@@ -2,6 +2,7 @@
 @import "normalize.min.css";
 
 /* Variables */
+// Colors
 $darkprimary: #1976D2;
 $primary: #2196F3;
 $lightprimary: #BBDEFB;
@@ -10,6 +11,8 @@ $text: #FFFFFF;
 $primarytext: #212121;
 $secondarytext: #757575;
 $divider: #BDBDBD;
+
+// Fonts
 $roboto: 'Roboto', sans-serif;
 
 /* Mobile-first styles */
@@ -20,6 +23,8 @@ $roboto: 'Roboto', sans-serif;
     position: fixed;
     top: 0;
     left: 101%;
+    z-index: 2;
+    box-shadow: -1px 2px 5px rgba(0,0,0,.26);
     .settings_menu_list {
         width: 100%;
         height: 50%;
@@ -44,9 +49,11 @@ $roboto: 'Roboto', sans-serif;
 }
 
 .wrapper {
-    max-width: 960px;
+    width: 100%;
     height: 100%;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
 .upper_section {
@@ -60,7 +67,7 @@ $roboto: 'Roboto', sans-serif;
         width: 100%;
         height: 20%;
         background-color: $darkprimary;
-        box-shadow: 0px 1px 1px 1px $divider;
+        box-shadow: 0 2px 5px rgba(0,0,0,.26);
     }
     .screen {
         width: 100%;
@@ -100,7 +107,7 @@ $roboto: 'Roboto', sans-serif;
             color: $primarytext;
             font-family: $roboto;
             font-weight: 700;
-            box-shadow: 0px 2px 3px 1px $divider;
+            box-shadow: 0 2px 5px rgba(0,0,0,.26);
             outline: none;
             .history_svg, .settings_svg {
                 margin-right: 10px;
@@ -110,39 +117,152 @@ $roboto: 'Roboto', sans-serif;
     .controls {
         width: 100%;
         height: 90%;
-        padding: 10% 10%;
+        padding: 5% 5%;
         background-color: $lightprimary;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
         .clear, .record {
+            margin: 20px auto;
+            display: block;
             border-radius: 50%;
             text-transform: uppercase;
             background-color: $accent;
             color: $primarytext;
             font-family: $roboto;
             font-weight: 700;
-            box-shadow: 1px 2px 3px 1px $divider;
+            box-shadow: 0 2px 5px rgba(0,0,0,.26);
             border: none;
             outline: none;
         }
+        .record {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            font-size: 20px;
+        }
         .clear {
-            width: 30%;
-            height: 30%;
+            width: 100px;
+            height: 100px;
             font-size: 16px;
         }
-        .record {
-            width: 60%;
-            height: 60%;
-            font-size: 20px;
+    }
+}
+
+/* Media queries */
+
+// Height fixes
+@media screen and (max-height: 700px) {
+    .wrapper {
+        .lower_section {
+            .controls {
+                .record {
+                    width: 180px;
+                    height: 180px;
+                    margin: 20px auto;
+                }
+                .clear {
+                    width: 90px;
+                    height: 90px;
+                    margin: 15px auto;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-height: 600px) {
+    .wrapper {
+        .lower_section {
+            .controls {
+                .record {
+                    width: 150px;
+                    height: 150px;
+                    margin: 18px auto;
+                }
+                .clear {
+                    width: 80px;
+                    height: 80px;
+                    margin: 10px auto;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-height: 550px) {
+    .wrapper {
+        .lower_section {
+            .controls {
+                .record {
+                    width: 140px;
+                    height: 140px;
+                    margin: 15px auto;
+                    h2 {
+                        display: none;
+                    }
+                }
+                .clear {
+                    width: 75px;
+                    height: 75px;
+                    margin: 10px auto;
+                }
+            }
         }
     }
 }
 
 
+// Width fixes
+@media screen and (max-width: 400px) {
+    .wrapper {
+        .lower_section {
+            .navigation {
+                .history, .settings {
+                    font-size: 12px;
+                }
+            }
+            .controls {
+                .record {
+                    font-size: 16px;
+                }
+                .clear {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}
 
+@media screen and (min-width: 750px) {
+    .wrapper {
+        .lower_section {
+            .controls {
+                padding: 4% 4%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .record {
+                    margin: 15px auto;
+                }
+                .clear {
+                    margin: 12px auto;
+                }
+            }
+        }
+    }
+}
 
+@media screen and (min-width: 1200px) {
+    .lower_section {
+        .controls {
+            padding: 2% 2%;
+            .record {
+                margin: 20px auto;
+            }
+            .clear {
+                margin: 15px auto;
+            }
+        }
+    }
+}
 
 
 
