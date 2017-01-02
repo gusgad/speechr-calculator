@@ -4,63 +4,104 @@ class Sidebars {
         this.wrapper = document.querySelector('.wrapper');
         
         // Settings sidebar elements
-        this.settingsPos = false;
         this.settingsBtn = document.querySelector('.settings');
         this.settingsMenu = document.querySelector('.settings_menu');
-        this.historyBtn = document.querySelector('.history');
+        
         
         // History sidebar elements
         this.hisorySidebar = document.querySelector('.history_sidebar');
         this.historyBtn = document.querySelector('.history');
         
+        
         this.addEventListeners();
     }
+    
     addEventListeners() {
         this.settingsBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            this.openSettings();
-        });
-        this.wrapper.addEventListener('click', (e) => {
-            this.closeSettings();
-            this.closeHistory();
+            this.open(this.settingsMenu, '-80');
         });
         this.historyBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            this.openHistory();
-        })
+            this.open(this.hisorySidebar, '80');
+        });
+        this.wrapper.addEventListener('click', (e) => {
+            this.close(this.settingsMenu, '80');
+            this.close(this.hisorySidebar, '-80');
+        });
     }
-    openSettings() {
-        this.settingsMenu.style.transform = 'translateX(-80%)';
-        this.settingsPos = true;
+    
+    open(element, percent) {
+        element.style.transform = `translateX(${percent}%)`;
+        if (element.className === 'settings_menu') {
+            this.historyBtn.style.pointerEvents = 'none';
+        } else if (element.className === 'history_sidebar') {
+            this.settingsBtn.style.pointerEvents = 'none';
+        }
     }
-    closeSettings() {
-        this.settingsMenu.style.transform = 'translateX(80%)';
-        this.settingsPos = false;
-    }
-    openHistory() {
-        this.hisorySidebar.style.transform = 'translateX(80%)';
-    }
-    closeHistory() {
-        this.hisorySidebar.style.transform = 'translateX(-80%)';
+    
+    close(element, percent) {
+        element.style.transform = `translateX(${percent}%)`;
+        this.settingsBtn.style.pointerEvents = 'all';
+        this.historyBtn.style.pointerEvents = 'all';
     }
 }
 
 new Sidebars();
 
-/*let sidebarMenu = new SidebarMenu({
-    settingsBtn: document.querySelector('.settings'),
-    settingsMenu: document.querySelector('.settings_menu')
-});
 
-let settingsBtn = document.querySelector('.settings');
-settingsBtn.addEventListener('click', function(e) {
-    e.stopPropagation();
-    sidebarMenu.open();
-})
 
-let wrapper = document.querySelector('.wrapper');
-wrapper.addEventListener('click', function(e) {
-    if (sidebarMenu.position === true) {
-        sidebarMenu.close();
+
+window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+class Recording {
+    constructor() {
+        // API variables
+        window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        this.recognition = new SpeechRecognition();
+        this.recognition.lang = 'en-IN';
+        this.recognition.continuous = true;
+        //this.recognition.interimResults = true;
+        
+        
+        this.statement = document.createElement('p');
+        this.display = document.querySelector('.display');
+        this.recordBtn = document.querySelector('.record');
+        
+        this.addEventListeners();
     }
-})*/
+    
+    addEventListeners() {
+        this.recognition.addEventListener('result', (e) => {
+            let transcript = Array.from(e.results)
+                .map(result => result[0])
+                .map(result => result.transcript);
+            
+            console.log(transcript);
+            this.statement.textContent = transcript.join('');
+            this.display.appendChild(this.statement);
+        });
+        this.recordBtn.addEventListener('click', (e) => {
+            this.recognition.start();
+        })
+    }
+}
+
+new Recording();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
