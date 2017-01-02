@@ -63,8 +63,8 @@ class Recording {
         this.recognition.continuous = true;
         //this.recognition.interimResults = true;
         
-        
-        this.statement = document.createElement('p');
+        this.statement = document.createElement('h5');
+        this.result = document.createElement('h4');
         this.display = document.querySelector('.display');
         this.recordBtn = document.querySelector('.record');
         
@@ -77,13 +77,18 @@ class Recording {
                 .map(result => result[0])
                 .map(result => result.transcript);
             
-            console.log(transcript);
-            this.statement.textContent = transcript.join('');
+            console.log(eval(transcript[0]));
+            
+            
+            this.statement.textContent = transcript;
             this.display.appendChild(this.statement);
+            
+            this.result.textContent = eval(transcript[0]);
+            this.display.appendChild(this.result);
         });
         this.recordBtn.addEventListener('click', (e) => {
             this.recognition.start();
-        })
+        });
     }
 }
 

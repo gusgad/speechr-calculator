@@ -107,13 +107,26 @@ $roboto: 'Roboto', sans-serif;
             border-radius: 2%;
             background-color: $lightprimary;
             position: relative;
-            p {
+            h4, h5 {
                 position: absolute;
                 right: 15px;
-                bottom: 15px;
+                bottom: 100px;
                 font-family: $roboto;
-                font-size: 40px;
+                font-size: 35px;
                 color: $darkprimary;
+                text-shadow: 1px 1px 2px $darkprimary;
+            }
+            h4 {
+                font-size: 60px;
+                bottom: 15px;
+            }
+            .result {
+                position: absolute;
+                left: 15px;
+                bottom: 20px;
+                font-family: $roboto;
+                font-size: 14px;
+                color: $primarytext;
                 text-shadow: 1px 1px 2px $darkprimary;
             }
         }
