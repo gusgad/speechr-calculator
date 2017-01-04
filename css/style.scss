@@ -2,12 +2,30 @@
 @import "normalize.min.css";
 
 /* Variables */
-// Colors
+/* Colors */
+
+// Blue and green #primary
 $darkprimary: #1976D2;
 $primary: #2196F3;
 $lightprimary: #BBDEFB;
 $accent: #4CAF50;
 $text: #FFFFFF;
+
+// Yellow and indigo
+$darkprimary2: #FBC02D;
+$primary2: #FFEB3B;
+$lightprimary2: #FFF9C4;
+$accent2: #536DFE;
+$text2: #212121;
+
+// Grey and pink
+$darkprimary3: #455A64;
+$primary3: #607D8B;
+$lightprimary3: #CFD8DC;
+$accent3: #FF4081;
+$text3: #FFFFFF;
+
+
 $primarytext: #212121;
 $secondarytext: #757575;
 $divider: #BDBDBD;
@@ -50,37 +68,45 @@ $roboto: 'Roboto', sans-serif;
     }
 }
 
-.menu_color_list {
+.menu_color_list, .menu_font_list {
     width: 100%;
     position: absolute;
     bottom: 0;
     right: 0;
     transform: translateY(101%);
     transition: 0.3s all ease-out;
-    .menu_color_list_item {
+    will-change: transform;
+    .menu_color_list_item, .menu_font_list_item {
         width: 100%;
         height: 50px;
         padding-left: 20px;
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        vertical-align: center;
         background-color: $lightprimary;
         border-bottom: 1px solid $primary;
         color: $primarytext;
-        input {
+        input{
             display: none;
         }
+        input:checked + label{
+            color: $accent;
+        }
         label {
-            width: 20px;
-            height: 20px;
+            width: 100%;
             margin-left: 5px;
             position: relative;
-            top: 3px;
             text-transform: uppercase;
             font-family: $roboto;
         }
     }
+    /*.active{
+        background-color: $accent;
+    }*/
+}
+
+.list-open {
+    transform: translateY(0%);
 }
 
 .history_sidebar {

@@ -19,11 +19,11 @@
                     </svg>
                     <h2>Color scheme</h2>
                 </li>
-               <li class="menu_color_list">
+               <li class="menu_color_list" data-state="closed">
                     <ul>
-                        <li class="menu_color_list_item" id="color1"><input type=radio><label for="color1"><span></span>Blue</label></li>
-                        <li class="menu_color_list_item" id="color2"><input type=radio><label for="color2"><span></span>Red</label></li>
-                        <li class="menu_color_list_item" id="color3"><input type=radio><label for="color3"><span></span>Yellow</label><li>
+                        <li class="menu_color_list_item active"><input type="radio" name="color" id="color1" checked><label for="color1"><span></span>Blue/Green</label></li>
+                        <li class="menu_color_list_item"><input type="radio" name="color" id="color2"><label for="color2"><span></span>Yellow/Indigo</label></li>
+                        <li class="menu_color_list_item"><input type="radio" name="color" id="color3"><label for="color3"><span></span>Grey/Pink</label><li>
                     </ul>
                 </li>
                <li class="menu_font menu">
@@ -32,6 +32,16 @@
                     <path d="M9.93 13.5h4.14L12 7.98zM20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-4.05 16.5l-1.14-3H9.17l-1.12 3H5.96l5.11-13h1.86l5.11 13h-2.09z"/>
                     </svg>
                     <h2>Font size</h2>
+               </li>
+               <li class="menu_font_list">
+                   <ul>
+                       <li class="menu_font_list_item" id="font1">
+                           <input type=radio><label for="font1"><span></span>Medium</label>
+                       </li>
+                       <li class="menu_font_list_item" id="font2">
+                           <input type=radio><label for="font2"><span></span>Small</label>
+                       </li>
+                   </ul>
                </li>
            </ul>
         </div>

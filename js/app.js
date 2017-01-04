@@ -1,6 +1,7 @@
 /* Waves library */
 Waves.attach('.record, .clear', ['waves-button']);
 Waves.attach('.history, .settings', ['waves-float']);
+Waves.attach('.menu_color, .menu_font, .menu_color_list_item, .menu_font_list_item', ['waves-float']);
 Waves.init();
 
 
@@ -8,6 +9,48 @@ class Sidebars {
     constructor(options) {
         this.elem = options;
         this.wrapper = document.querySelector('.wrapper');
+        this.designElements = {
+            header: document.querySelector('.header'),
+            screen: document.querySelector('.screen'),
+            display: document.querySelector('.display'),
+            history: document.querySelector('.history'),
+            settings: document.querySelector('.settings'),
+            controls: document.querySelector('.controls'),
+            record: document.querySelector('.record'),
+            clear: document.querySelector('.clear'),
+            settingsMenu: document.querySelector('.settings_menu'),
+            menuColor: document.querySelector('.menu_color'),
+            menuFont: document.querySelector('.menu_font'),
+            historySidebar: document.querySelector('.history_sidebar'),
+            historySidebarScreen: document.querySelector('.history_sidebar_screen'),
+            
+        }
+        this.colorScheme = {
+            blue: {
+                darkPrimary: '#1976D2',
+                primary: '#2196F3',
+                lightPrimary: '#BBDEFB',
+                accent: '#4CAF50',
+                text: '#FFFFFF'
+            },
+            yellow: {
+                darkPrimary: '#FBC02D',
+                primary: '#FFEB3B',
+                lightPrimary: '#FFF9C4',
+                accent: '#91A2FF',
+                text: '#212121'
+            },
+            grey: {
+                darkPrimary: '#455A64',
+                primary: '#607D8B',
+                lightPrimary: '#CFD8DC',
+                accent: '#EF5350',
+                text: '#FFFFFF'
+            },
+            primaryText: '#212121',
+            secondaryText: '#757575',
+            divider: '#BDBDBD'
+        }
         
         // Settings sidebar elements
         this.settingsBtn = document.querySelector('.settings');
@@ -21,33 +64,52 @@ class Sidebars {
         // Color menu
         this.colorMenu = document.querySelector('.menu_color');
         this.colorList = document.querySelector('.menu_color_list');
+        this.colorListItem = document.querySelector('.menu_color_list_item');
         
         // Font menu
         this.fontMenu = document.querySelector('.menu_font');
+        this.fontList = document.querySelector('.menu_font_list');
         
         this.addEventListeners();
     }
     
+    // Event listeners
     addEventListeners() {
         this.settingsBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            this.open(this.settingsMenu, '-80');
+            this.open(this.settingsMenu, 'X', '-80');
         });
         this.historyBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            this.open(this.hisorySidebar, '80');
+            this.open(this.hisorySidebar, 'X', '80');
         });
         this.wrapper.addEventListener('click', (e) => {
-            this.close(this.settingsMenu, '80');
-            this.close(this.hisorySidebar, '-80');
+            this.close(this.settingsMenu, 'X', '80');
+            this.close(this.hisorySidebar, 'X', '-80');
         });
         this.colorMenu.addEventListener('click', (e) => {
-            this.showMenu(this.colorList);
+            this.toggleClass(this.colorList,  'list-open');
+        });
+        this.fontMenu.addEventListener('click', (e) => {
+            this.toggleClass(this.fontList, 'list-open');
+        });
+        this.colorList.addEventListener('click', (e) => {
+            console.log(e.target.id);
+            e.stopPropagation();
+            if (e.target.id === 'color2') {
+                this.changeColors(this.colorScheme.yellow.darkPrimary, this.colorScheme.yellow.primary, this.colorScheme.yellow.lightPrimary, this.colorScheme.yellow.accent, this.colorScheme.yellow.text);
+            } else if (e.target.id === 'color3') {
+                this.changeColors(this.colorScheme.grey.darkPrimary, this.colorScheme.grey.primary, this.colorScheme.grey.lightPrimary, this.colorScheme.grey.accent, this.colorScheme.yellow.text);
+            } else if (e.target.id === 'color1') {
+                this.changeColors(this.colorScheme.blue.darkPrimary, this.colorScheme.blue.primary, this.colorScheme.blue.lightPrimary, this.colorScheme.blue.accent, this.colorScheme.yellow.text);
+            }
         });
     }
     
-    open(element, percent) {
-        element.style.transform = `translateX(${percent}%)`;
+    // Methods
+    open(element, direction, percent, state) {
+        element.style.transform = `translate${direction}(${percent}%)`;
+        
         if (element.className === 'settings_menu') {
             this.historyBtn.style.pointerEvents = 'none';
         } else if (element.className === 'history_sidebar') {
@@ -55,23 +117,37 @@ class Sidebars {
         }
     }
     
-    close(element, percent) {
-        element.style.transform = `translateX(${percent}%)`;
+    close(element, direction, percent, state) {
+        element.style.transform = `translate${direction}(${percent}%)`;
         this.settingsBtn.style.pointerEvents = 'all';
         this.historyBtn.style.pointerEvents = 'all';
     }
     
-    showMenu(element) {
-        element.style.transform = 'translateY(0%)';
+    toggleClass(element, className) {
+        element.classList.toggle(className);
     }
     
-    hideMenu(element) {
-        element.style.transform = 'translateX(100%)';
+    changeColors(darkPrimary, primary, lightPrimary, accent, text) {
+         this.designElements.header.style.backgroundColor = darkPrimary;
+         this.designElements.screen.style.backgroundColor = primary;
+         this.designElements.display.style.backgroundColor = lightPrimary;
+         this.designElements.history.style.backgroundColor = primary;
+         this.designElements.settings.style.backgroundColor = primary;
+         this.designElements.controls.style.backgroundColor = lightPrimary;
+                
+         this.designElements.record.style.backgroundColor = accent;
+         this.designElements.record.style.color = text;
+         this.designElements.clear.style.backgroundColor = accent;
+         this.designElements.clear.style.color = text;
+         this.designElements.settingsMenu.style.backgroundColor = darkPrimary;
+         this.designElements.menuColor.style.backgroundColor = primary;
+         this.designElements.menuFont.style.backgroundColor = primary;
+         this.designElements.historySidebar.style.backgroundColor = darkPrimary;
+         this.designElements.historySidebarScreen.style.backgroundColor = lightPrimary;
     }
 }
 
 new Sidebars();
-
 
 
 
