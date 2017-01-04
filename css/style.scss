@@ -3,29 +3,11 @@
 
 /* Variables */
 /* Colors */
-
-// Blue and green #primary
 $darkprimary: #1976D2;
 $primary: #2196F3;
 $lightprimary: #BBDEFB;
-$accent: #4CAF50;
+$accent: #92d04a;
 $text: #FFFFFF;
-
-// Yellow and indigo
-$darkprimary2: #FBC02D;
-$primary2: #FFEB3B;
-$lightprimary2: #FFF9C4;
-$accent2: #536DFE;
-$text2: #212121;
-
-// Grey and pink
-$darkprimary3: #455A64;
-$primary3: #607D8B;
-$lightprimary3: #CFD8DC;
-$accent3: #FF4081;
-$text3: #FFFFFF;
-
-
 $primarytext: #212121;
 $secondarytext: #757575;
 $divider: #BDBDBD;
@@ -83,14 +65,16 @@ $roboto: 'Roboto', sans-serif;
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        background-color: $lightprimary;
-        border-bottom: 1px solid $primary;
-        color: $primarytext;
-        input{
+        background-color: #F0F0F0;
+        border-bottom: 1px solid $primarytext;
+        color: $secondarytext;
+        cursor: pointer;
+        input {
             display: none;
         }
-        input:checked + label{
-            color: $accent;
+        input:checked + label {
+            color: $primarytext;
+            opacity: 1;
         }
         label {
             width: 100%;
@@ -98,16 +82,20 @@ $roboto: 'Roboto', sans-serif;
             position: relative;
             text-transform: uppercase;
             font-family: $roboto;
+            opacity: 0.5;
+            cursor: pointer;
         }
     }
-    /*.active{
-        background-color: $accent;
-    }*/
+}
+
+.menu-closed {
+    pointer-events: none;
 }
 
 .list-open {
     transform: translateY(0%);
 }
+
 
 .history_sidebar {
     width: 100%;
@@ -216,6 +204,7 @@ $roboto: 'Roboto', sans-serif;
             font-weight: 700;
             box-shadow: 0 2px 5px rgba(0,0,0,.26);
             outline: none;
+            cursor: pointer;
             .history_svg, .settings_svg {
                 margin-right: 10px;
             }
@@ -241,6 +230,7 @@ $roboto: 'Roboto', sans-serif;
             box-shadow: 0 2px 5px rgba(0,0,0,.26);
             border: none;
             outline: none;
+            cursor: pointer;
         }
         .record {
             position: relative;
