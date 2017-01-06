@@ -6,7 +6,7 @@
 $darkprimary: #1976D2;
 $primary: #2196F3;
 $lightprimary: #BBDEFB;
-$accent: #92d04a;
+$accent: #90d63f;
 $text: #FFFFFF;
 $primarytext: #212121;
 $secondarytext: #757575;
@@ -15,8 +15,13 @@ $divider: #BDBDBD;
 // Fonts
 $roboto: 'Roboto', sans-serif;
 
+html {
+    font-size: 100%;
+}
+
 /* Mobile-first styles */
-.settings_menu {
+
+.settings_sidebar {
     width: 100%;
     height: 100%;
     background-color: $darkprimary;
@@ -50,6 +55,7 @@ $roboto: 'Roboto', sans-serif;
     }
 }
 
+// Menu sidebar
 .menu_color_list, .menu_font_list {
     width: 100%;
     position: absolute;
@@ -88,6 +94,7 @@ $roboto: 'Roboto', sans-serif;
     }
 }
 
+// Staes of color and font options
 .menu-closed {
     pointer-events: none;
 }
@@ -97,10 +104,10 @@ $roboto: 'Roboto', sans-serif;
 }
 
 
-.history_sidebar {
+.info_sidebar {
     width: 100%;
     height: 100%;
-    padding-right: 7%;
+    padding-right: 2%;
     background-color: $darkprimary;
     position: fixed;
     top: 0;
@@ -112,14 +119,15 @@ $roboto: 'Roboto', sans-serif;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    .history_sidebar_screen {
-        width: 70%;
+    .info_sidebar_screen {
+        width: 76%;
         height: 95%;
         background-color: $lightprimary;
         border-radius: 4px;
     }
 }
 
+// Wrapper of the DOM
 .wrapper {
     width: 100%;
     height: 100%;
@@ -128,6 +136,7 @@ $roboto: 'Roboto', sans-serif;
     z-index: 1;
 }
 
+// Section above controls
 .upper_section {
     width: 100%;
     height: 40%;
@@ -159,7 +168,7 @@ $roboto: 'Roboto', sans-serif;
                 right: 15px;
                 bottom: 100px;
                 font-family: $roboto;
-                font-size: 35px;
+                font-size: 2.2rem;
                 color: $darkprimary;
                 text-shadow: 1px 1px 2px $darkprimary;
             }
@@ -172,7 +181,7 @@ $roboto: 'Roboto', sans-serif;
                 left: 15px;
                 bottom: 20px;
                 font-family: $roboto;
-                font-size: 14px;
+                font-size: 1.1rem;
                 color: $primarytext;
                 text-shadow: 1px 1px 2px $darkprimary;
             }
@@ -180,6 +189,7 @@ $roboto: 'Roboto', sans-serif;
     }
 }
 
+// Section lower the screen
 .lower_section {
     width: 100%;
     height: 60%;
@@ -189,13 +199,13 @@ $roboto: 'Roboto', sans-serif;
         display: flex;
         justify-content: center;
         align-items: center;
-        .history, .settings {
+        .info, .settings {
             width: 50%;
             height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 14px;
+            font-size: 0.9rem;
             text-transform: uppercase;
             background-color: $primary;
             border: none;
@@ -205,11 +215,11 @@ $roboto: 'Roboto', sans-serif;
             box-shadow: 0 2px 5px rgba(0,0,0,.26);
             outline: none;
             cursor: pointer;
-            .history_svg, .settings_svg {
+            .info_svg, .settings_svg {
                 margin-right: 10px;
             }
         }
-        .history {
+        .info {
             pointer-events: all;
         }
     }
@@ -236,15 +246,16 @@ $roboto: 'Roboto', sans-serif;
             position: relative;
             width: 200px;
             height: 200px;
-            font-size: 20px;
+            font-size: 1.4rem;;
         }
         .clear {
             width: 100px;
             height: 100px;
-            font-size: 16px;
+            font-size: 1rem;
         }
     }
 }
+
 
 /* Media queries */
 
@@ -316,15 +327,15 @@ $roboto: 'Roboto', sans-serif;
         .lower_section {
             .navigation {
                 .history, .settings {
-                    font-size: 12px;
+                    font-size: 0.9rem;
                 }
             }
             .controls {
                 .record {
-                    font-size: 16px;
+                    font-size: 1.2rem;
                 }
                 .clear {
-                    font-size: 14px;
+                    font-size: 1rem;
                 }
             }
         }
