@@ -38,6 +38,10 @@ module.exports = function(grunt) {
             concat: {
                 files: 'app/*.js',
                 tasks: ['concat']
+            },
+            babel: {
+                files: 'app/*.js',
+                tasks: ['babel']
             }
 		},
       
@@ -49,7 +53,37 @@ module.exports = function(grunt) {
         }
     },
       
-
+        babel: {
+        options: {
+            sourceMap: true,
+            presets: ['babel-preset-es2015']
+        },
+        dist: {
+            files: {
+                'js/testApp.js': 'src/app.js'
+            }
+        }
+    },
+      
+    'sw-precache': {
+		options: {
+			cacheId: 'speechr-cache',
+			workerFileName: 'sw.js',
+			verbose: true,
+		},
+		'default': {
+			staticFileGlobs: [
+				'css/*.css',
+				'img/*.{gif,png,jpg}',
+				'js/*.js',
+			],
+		},
+		'develop': {
+			staticFileGlobs: [
+				'font/**/*.{woff,ttf,svg,eot}'
+			],
+		},
+	},  
 
 });
     
@@ -62,6 +96,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-postcss');
+  grunt.loadNpmTasks('grunt-sw-precache');
     
-  grunt.registerTask('default', ['connect', 'watch']);
+  grunt.registerTask('default', ['sw-precache', 'connect', 'watch']);
 };

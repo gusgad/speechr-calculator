@@ -1,9 +1,22 @@
+/* Service Worker registration */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+      navigator.serviceWorker.register('./sw.js').then(function(registration) {
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }).catch(function(err) {
+      // registration failed :(
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  });
+}
+
+
 /* Waves library */
 Waves.attach('.record, .clear', ['waves-button']);
 Waves.attach('.history, .settings', ['waves-float']);
 Waves.attach('.menu_color, .menu_font, .menu_color_list_item, .menu_font_list_item', ['waves-float']);
 Waves.init();
-
 
 /* Main app */
 class Sidebars {
@@ -230,6 +243,10 @@ class Recording {
             this.speechProcess(e);
         });
         
+        this.recognition.addEventListener('nomatch', (e) => {
+            this.display.textContent = 'Error occured, please try again';
+        });
+        
         this.recordBtn.addEventListener('click', (e) => {
             this.record();
         });
@@ -285,6 +302,8 @@ class Recording {
             
             this.result.textContent = eval(this.transcript);
             this.display.appendChild(this.result);
+        
+        return true;
     }
 }
 
