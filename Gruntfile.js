@@ -16,16 +16,15 @@ module.exports = function(grunt) {
       },
       
     
-//sass
       sass: {
         dist: {
           files: {
             "css/style.css" : "css/style.scss"
           }
         }
-    },
+      },
       
-//watch
+
       watch: {
 			sass: {
 				files: 'css/*.scss',
@@ -39,13 +38,13 @@ module.exports = function(grunt) {
                 files: 'app/*.js',
                 tasks: ['concat']
             },
-            babel: {
+            jshint: {
                 files: 'app/*.js',
-                tasks: ['babel']
+                tasks: ['jshint']
             }
-		},
+     },
       
-       connect: {
+    connect: {
         server: {
           options: {
             port: 3000
@@ -53,17 +52,6 @@ module.exports = function(grunt) {
         }
     },
       
-        babel: {
-        options: {
-            sourceMap: true,
-            presets: ['babel-preset-es2015']
-        },
-        dist: {
-            files: {
-                'js/testApp.js': 'src/app.js'
-            }
-        }
-    },
       
     'sw-precache': {
 		options: {
@@ -81,9 +69,9 @@ module.exports = function(grunt) {
 		'develop': {
 			staticFileGlobs: [
 				'font/**/*.{woff,ttf,svg,eot}'
-			],
-		},
-	},  
+			]
+		}
+	}
 
 });
     
@@ -97,6 +85,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-postcss');
   grunt.loadNpmTasks('grunt-sw-precache');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
     
-  grunt.registerTask('default', ['sw-precache', 'connect', 'watch']);
+  grunt.registerTask('default', ['connect', 'jshint', 'watch']);
 };

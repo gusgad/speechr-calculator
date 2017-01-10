@@ -23,7 +23,6 @@ class Sidebars {
     constructor(options) {
         
         // Basic elements
-        this.elem = options;
         this.html = document.querySelector('html');
         this.wrapper = document.querySelector('.wrapper');
         
@@ -213,11 +212,11 @@ class Sidebars {
 new Sidebars();
 
 
-
+// Checking API availability
 window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
 class Recording {
-    constructor() {
+    constructor(options) {
         
         // API variables
         window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -303,7 +302,6 @@ class Recording {
             this.result.textContent = eval(this.transcript);
             this.display.appendChild(this.result);
         
-        return true;
     }
 }
 
