@@ -85,7 +85,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-postcss');
   grunt.loadNpmTasks('grunt-sw-precache');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
     
-  grunt.registerTask('default', ['connect', 'jshint', 'watch']);
+  grunt.registerTask('default', ['connect', 'watch']);
 };
