@@ -1,5 +1,5 @@
 // Name of the cache that we install
-var CACHE_NAME = 'my-site-cache-v1';
+var CACHE_NAME = 'spr-cache';
 
 // Array of files needed to be cached
 var REQUIRED_FILES = [
@@ -7,7 +7,8 @@ var REQUIRED_FILES = [
   '/js/waves.min.js',
   '/css/style.css',
   '/css/waves.min.css',
-  '/index.html'
+  '/index.html',
+  './'
 ];
 
 
